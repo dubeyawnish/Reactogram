@@ -32,11 +32,11 @@ const Card = () => {
                       <i class="fs-4 ps-3 fa-regular fa-comment"></i>
                       <i class="fs-4 ps-3 fa-solid fa-location-arrow"></i>
                       </div>
-                      <div className='col-6'><span className='pe-2 fs-6 float-end fw-bold'>200 Likes</span></div>
+                      <div className='col-6'><span className='pe-2 fs-6 float-end fw-bold'>200 Likes </span></div>
                    </div>
 
                    <div className='row'>
-                      <div className='col-12'><span className='ps-3 text-muted'>2 hours</span></div>
+                      <div className='col-12'><span className='ps-3 text-muted'>2 hours Ago</span></div>
                    </div>
 
 

@@ -5,3 +5,23 @@
     width: 30vw;
     padding: 10px;
  }
+ .searchIcon{
+    display: none;
+ }
+
+ @media only screen and (max-width:450px){
+    .searchbox{
+        display:none;
+    }
+    .navbar-brand{
+        margin-left:5px !important;
+    }
+    .searchIcon{
+        display: block;
+     }
+     .allIcon{
+        margin-right:2px !important;
+        padding:15px;
+        margin-left: 0 !important;
+     }
+ }
