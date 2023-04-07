@@ -17,7 +17,10 @@ const Login = () => {
                                         
                                              <input  type="email" className="p-2 mb-2 mt-4 form-control input-bg" placeholder='Phone number,username or email'   />
                                              <input type="password" className="p-2 my-2 form-control input-bg" placeholder='Password'/>
-                                             <button type="submit" className="btn btn-primary">Submit</button>
+                                             <div className="mt-3 d-grid">
+                                                <button type="submit" className="custom-btn custom-btn-blue">Log in</button>
+                                             </div>
+                                             
                                         
                                    </form>
 

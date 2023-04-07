@@ -9,3 +9,15 @@
     font-size: 0.9rem;
     height:2.9rem;
 }
+
+.custom-btn{
+    border-radius: 4px;
+    padding: 0.6rem;
+
+}
+.custom-btn-blue{
+    border: 1px solid #b3e0ff;
+    background-color: #b3e0ff;
+    color: #fff;
+
+}
