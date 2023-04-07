@@ -2,6 +2,7 @@ import React from 'react'
 import './Login.css'
 import SocialDesk from '../../Images/social-desktop.PNG';
 import SocialMob from '../../Images/social-mobile.PNG';
+import {Link} from 'react-router-dom';
 
 const Login = () => {
      return (
@@ -28,7 +29,7 @@ const Login = () => {
                                              <hr />
                                         </div>
                                         <div className=" mb-5 mt-3 d-grid">
-                                             <button className="custom-btn custom-btn-white"><span className='text-muted fs-6'>Dont't have an account?</span><span className='ms-1 text-info fw-bold'> Signup</span></button>
+                                             <button className="custom-btn custom-btn-white"><span className='text-muted fs-6'>Dont't have an account?</span><Link to ='/signup' className='ms-1 text-info fw-bold'> Signup</Link></button>
                                         </div>
 
 

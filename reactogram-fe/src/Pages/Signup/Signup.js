@@ -1,6 +1,7 @@
 import React from 'react'
 import SocialDesk from '../../Images/social-desktop.PNG';
 import SocialMob from '../../Images/social-mobile.PNG';
+import {Link} from 'react-router-dom';
 import './Signup.css'
 
 const Signup = () => {
@@ -30,7 +31,7 @@ const Signup = () => {
                                              <hr />
                                         </div>
                                         <div className="mt-3 mb-3 d-grid">
-                                             <button className="custom-btn custom-btn-white"><span className='text-muted fs-6'>Already have an account?</span><span className='ms-1 text-info fw-bold'> Login</span></button>
+                                             <button className="custom-btn custom-btn-white"><span className='text-muted fs-6'>Already have an account?</span><Link to='/login' className='ms-1 text-info fw-bold'> Login</Link></button>
                                         </div>
 
 
