@@ -30,3 +30,33 @@
     padding: 14px;
 
 }
+
+.socialDesktop{
+    display: block;
+}
+.socialMobile{
+    display:none;
+}
+
+@media only screen and (max-width:450px) {
+    .socialDesktop{
+        display: none;
+    }
+    .socialMobile{
+        display:block;
+    }
+    .login-container{
+        
+        margin-top:2.5rem;
+    }
+    .card{
+        border:none !important;
+    }
+    .shadow{
+        box-shadow:none !important;
+    }
+    .card-body{
+        padding-left: 1.4rem !important ;
+        padding-right: 1.4rem !important ;
+    }
+}
