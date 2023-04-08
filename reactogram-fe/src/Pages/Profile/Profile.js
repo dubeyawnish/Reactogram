@@ -9,6 +9,11 @@ const Profile = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [showPost, setShowPost] = useState(false);
+
+  const handlePostClose = () => setShowPost(false);
+  const handlePostShow = () => setShowPost(true);
   return (
     <div className='container shadow mt-3 p-4'>
       <div className='row'>
@@ -44,7 +49,7 @@ const Profile = () => {
             <button className='px-md-4 custom-btn custom-btn-white me-md-3 me-2'>
               <span className='fs-6'>Edit Profile</span>
             </button>
-            <button className=' px-4  custom-btn custom-btn-white'>
+            <button onClick={handlePostShow} className=' px-4  custom-btn custom-btn-white'>
               <span className='fs-6'>Upload Post</span>
             </button>
 
@@ -133,18 +138,18 @@ const Profile = () => {
         <Modal.Header closeButton>
           <div className="dropdown">
             <a className="btn " href="#" role="button" data-bs-toggle="dropdown">
-           <i className=" fs-4 fa-solid fa-ellipsis"></i>
-          
-              
+              <i className=" fs-4 fa-solid fa-ellipsis"></i>
+
+
             </a>
 
             <ul className="dropdown-menu">
               <li><a className="dropdown-item" href="#"><i className=" px-2 fa-regular fa-pen-to-square"></i> Edit Post</a></li>
               <li><a className="dropdown-item" href="#"><i className="px-2 fa-regular fa-trash-can"></i> Delete Post</a></li>
-              
+
             </ul>
           </div>
-          
+
         </Modal.Header>
         <Modal.Body>
           <div className='row'>
@@ -219,6 +224,65 @@ const Profile = () => {
         </Modal.Body>
 
       </Modal>
+
+
+
+      <Modal show={showPost} onHide={handlePostClose} size='lg' centered>
+        <Modal.Header closeButton>
+          <span className='fs-5 fw-bold'>Upload Post</span>
+
+        </Modal.Header>
+        <Modal.Body>
+          <div className='row  '>
+            <div className='col-md-6 col-sm-12 mb-3'>
+              <div className='uploadBox'>
+                <div className="dropZoneContainer">
+                  <input name="file" type="file" id="drop_zone" className="FileUpload" accept=".jpg,.png,.gif" />
+                  <div className="dropZoneOverlay">
+
+                    <i class="fa-solid fa-cloud-arrow-up fs-1"></i><br />Upload Photo From Computer</div>
+                </div>
+
+
+              </div>
+
+            </div>
+            <div className='col-md-6 col-sm-12 d-flex flex-column justify-content-between'>
+              <div className='row'>
+                <div className=' col-sm-12 mb-3'>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">Add Caption</label>
+                  </div>
+
+                </div>
+                <div className=' col-sm-12'>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Add Location" />
+                    <label for="floatingInput"><i class="fa-solid fa-location-dot"></i> Add Location</label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div className='row'>
+                <div className='col-sm-12'>
+                  <button className=' custom-btn-pink px-4  custom-btn  float-end'>
+                    <span className='fs-6 fw-bold'>Post</span>
+                  </button>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </Modal.Body>
+
+      </Modal>
+
+
 
     </div>
   )

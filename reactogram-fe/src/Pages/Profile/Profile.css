@@ -23,6 +23,44 @@
 
 }
 
+.custom-btn-pink{
+    border: 2px solid #ed2a7e;
+    background-color: #ed2a7e;
+    color: #fff;
+    padding: 14px;
+    width: 160px;
+
+}
+
+.uploadBox{
+    height: 400px;
+    width: 360px;
+    border: 4px dotted gray;
+    border-radius: 10px;
+}
+
+
+
+.dropZoneOverlay, .FileUpload {
+    width: 283px;
+    height: 71px;
+}
+
+.dropZoneOverlay {
+    font-family: cursive;
+    color: #7066fb;
+    position: absolute;
+    top: 170px;
+    left: 40px;
+    text-align: center;
+}
+
+.FileUpload {
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+}
+
 @media only screen and(max-width:'450px'){
     .container{
         width: 100vw !important;
