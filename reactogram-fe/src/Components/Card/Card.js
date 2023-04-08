@@ -28,9 +28,9 @@ const Card = () => {
 
                    <div className='row mt-2'>
                       <div className='col-6 d-flex '>
-                      <i class="fs-4 ps-3 fa-regular fa-heart"></i>
-                      <i class="fs-4 ps-3 fa-regular fa-comment"></i>
-                      <i class="fs-4 ps-3 fa-solid fa-location-arrow"></i>
+                      <i className="fs-4 ps-3 fa-regular fa-heart"></i>
+                      <i className="fs-4 ps-3 fa-regular fa-comment"></i>
+                      <i className="fs-4 ps-3 fa-solid fa-location-arrow"></i>
                       </div>
                       <div className='col-6'><span className='pe-2 fs-6 float-end fw-bold'>200 Likes </span></div>
                    </div>
