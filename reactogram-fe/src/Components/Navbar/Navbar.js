@@ -2,6 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import logo from '../../Images/logo.PNG'
 import { NavLink } from 'react-router-dom'
+//import '../Card/Card.css'
 
 const Navbar = () => {
     return (
@@ -16,7 +17,19 @@ const Navbar = () => {
                         <a className="nav-link   searchIcon  allIcon fs-5 text-dark" href="#simple-list-item-1"><i className="fa-solid fa-magnifying-glass"></i></a>
                         <a className="nav-link allIcon ms-5 me-5 fs-5 text-dark" href="#simple-list-item-1"><i className="fa-solid fa-house"></i></a>
                         <a className="nav-link allIcon me-5 fs-5 text-dark" href="#simple-list-item-2"><i className="fa-regular fa-heart"></i></a>
-                        <NavLink className="nav-link allIcon me-5 fs-5 text-dark" to='/myprofile'><i className="fa-solid fa-circle"></i></NavLink>
+                        <div className="dropdown">
+                            <a className=" " href="#" role="button" data-bs-toggle="dropdown">
+                            <img className='mt-3 mt-md-0  navbar-profile-pic ' src='https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60' alt="profile pic" />
+                            </a>
+
+                            <ul className="dropdown-menu">
+                                <li><NavLink className="nav-link  ms-3" to='/myprofile'>My Profile</NavLink> </li>
+                                
+                                <li><a className="dropdown-item" href="#">Log Out</a></li>
+
+                            </ul>
+                        </div>
+                        
 
                     </form>
                 </div>

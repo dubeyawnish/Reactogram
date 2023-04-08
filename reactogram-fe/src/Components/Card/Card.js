@@ -9,7 +9,7 @@ const Card = () => {
                 <div className="card-body ">
                     <div className='row'>
                         <div className='col-6 d-flex'>
-                            <img className=' p-2 profile-pic ' src='https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60' alt="profile pic" />
+                            <img className=' p-2 post-profile-pic ' src='https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60' alt="profile pic" />
                             <div>
                                 <p className='pt-2 fs-6 fw-bold'>Title</p>
                                 <p className='location'>Description</p>
@@ -25,6 +25,7 @@ const Card = () => {
 
                       </div>
                    </div>
+                   
 
                    <div className='row mt-2'>
                       <div className='col-6 d-flex '>

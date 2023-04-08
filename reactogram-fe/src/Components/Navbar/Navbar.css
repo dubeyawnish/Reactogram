@@ -8,6 +8,11 @@
  .searchIcon{
     display: none;
  }
+ .navbar-profile-pic{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+ }
 
  @media only screen and (max-width:450px){
     .searchbox{
