@@ -22,3 +22,13 @@
     padding: 0.6rem;
 
 }
+
+@media only screen and(max-width:'450px'){
+    .container{
+        width: 100vw !important;
+    }
+    .card-img{
+        margin-bottom: 150px !important;
+    }
+
+}
