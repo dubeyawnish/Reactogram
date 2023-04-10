@@ -52,11 +52,11 @@ router.post('/createpost', protectedResoure, (req, res) => {
 
 
 
-router.delete("/deletepost/:postId", protectedResoure, (req , res) => {
+router.delete("/deletepost/:postId", protectedResoure, (req, res) => {
     PostModel.findOne({ _id: req.params.postId })
         .populate("author", "_id")
-        .then(( postFound) => {  // exec() fucntion is not working with latest mongoose
-            if ( !postFound) {
+        .then((postFound) => {  // exec() fucntion is not working with latest mongoose
+            if (!postFound) {
                 return res.status(400).json({ result: "Post does not exist" });
             }
             //check if the post author is same as loggedin user only then allow deletion
@@ -71,10 +71,26 @@ router.delete("/deletepost/:postId", protectedResoure, (req , res) => {
                     })
             }
         })
-        .catch((error)=>{
+        .catch((error) => {
             return res.status(400).json({ error: "Post does not exist error" });
         });
-        
+
+});
+
+
+router.put('/like', protectedResoure, (req, res) => {
+    PostModel.findByIdAndUpdate(req.body.postId, {
+        $push: { likes: req.user._id }
+    }, {
+        new: true // returns the updated record
+    })
+        .populate("author", "_id fullName")
+        .then((result) => {
+            return res.status(200).json(result);
+        })
+        .catch((error) => {
+            return res.status(400).json({ error: error });
+        })
 });
 
 module.exports = router;
