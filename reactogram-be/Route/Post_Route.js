@@ -5,6 +5,34 @@ const protectedResoure = require("../Middleware/protectedResource");
 const PostModel = mongoose.model('PostModel');
 const router = express.Router();
 
+
+
+// get all post 
+router.get('/allposts',(req,res)=>{
+    PostModel.find()
+    .populate("author","_id fullName profileImg")
+    .then((dbPosts)=>{
+      res.status(200).json({author:dbPosts})
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+});
+
+
+// get all post of logged in user 
+router.get('/myallposts',protectedResoure,(req,res)=>{
+    PostModel.find({author:req.user._id})
+    .populate("author","_id fullName profileImg")
+    .then((dbPosts)=>{
+      res.status(200).json({author:dbPosts})
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+});
+
+
 router.post('/createpost', protectedResoure, (req, res) => {
     const { description, location, image } = req.body;
     if (!description || !location || !image) {
