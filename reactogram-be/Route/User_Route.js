@@ -2,7 +2,8 @@
 const express=require('express');
 const mongoose =require('mongoose');
 const bcryptjs=require('bcryptjs');
-
+const {JWT_SECRET} =require('../config');
+const jwt=require('jsonwebtoken');
 
 
 const router = express.Router();
@@ -52,7 +53,9 @@ router.post("/login", (req, res) => {
             bcryptjs.compare(password, userInDB.password)// compare the password user enter and password form database
                 .then((didMatch) => {
                     if(didMatch){
-                        res.status(201).json({ result: "User Login Successfull" });
+                        const jwttoken=jwt.sign({_id:userInDB._id},JWT_SECRET);
+                        const userinfo={"email":userInDB.email,"fullName":userInDB.fullName};
+                        res.status(201).json({ result: {token:jwttoken,user:userinfo} });
                     }
                     else{
                         return res.status(401).json({ error: "Invalid Credentials" });
