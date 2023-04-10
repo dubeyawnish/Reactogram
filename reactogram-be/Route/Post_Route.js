@@ -77,10 +77,10 @@ router.delete("/deletepost/:postId", protectedResoure, (req, res) => {
 
 });
 
-
+//like api
 router.put('/like', protectedResoure, (req, res) => {
     PostModel.findByIdAndUpdate(req.body.postId, {
-        $push: { likes: req.user._id }
+        $push: { likes: req.user._id } // push the userid which user likes
     }, {
         new: true // returns the updated record
     })
@@ -92,5 +92,44 @@ router.put('/like', protectedResoure, (req, res) => {
             return res.status(400).json({ error: error });
         })
 });
+
+
+
+//unlike api
+router.put('/unlike', protectedResoure, (req, res) => {
+    PostModel.findByIdAndUpdate(req.body.postId, {
+        $pull: { likes: req.user._id }  // pull removes the userid which like
+    }, {
+        new: true // returns the updated record
+    })
+        .populate("author", "_id fullName")
+        .then((result) => {
+            return res.status(200).json(result);
+        })
+        .catch((error) => {
+            return res.status(400).json({ error: error });
+        })
+});
+
+
+
+router.put('/comment', protectedResoure, (req, res) => {
+     const comment={commentText:req.body.commentText,commentedBy:req.user._id};
+
+    PostModel.findByIdAndUpdate(req.body.postId, {
+        $push: { comments: comment} // push the userid which user likes
+    }, {
+        new: true // returns the updated record
+    })   
+        .populate("comments.commentedBy" ,"_id fullName") //comment owner
+        .populate("author", "_id fullName") //post owner
+        .then((result) => {
+            return res.status(200).json(result);
+        })
+        .catch((error) => {
+            return res.status(400).json({ error: error });
+        })
+});
+
 
 module.exports = router;
