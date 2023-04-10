@@ -55,13 +55,14 @@ router.post('/createpost', protectedResoure, (req, res) => {
 router.delete("/deletepost/:postId", protectedResoure, (req , res) => {
     PostModel.findOne({ _id: req.params.postId })
         .populate("author", "_id")
-        .then(( postFound) => {
+        .then(( postFound) => {  // exec() fucntion is not working with latest mongoose
             if ( !postFound) {
                 return res.status(400).json({ result: "Post does not exist" });
             }
             //check if the post author is same as loggedin user only then allow deletion
+            console.log(postFound);
             if (postFound.author._id.toString() === req.user._id.toString()) {
-                postFound.remove()
+                postFound.deleteOne()  // remove() function is also not working with latest mongodb
                     .then((data) => {
                         res.status(200).json({ result: data });
                     })
@@ -73,6 +74,7 @@ router.delete("/deletepost/:postId", protectedResoure, (req , res) => {
         .catch((error)=>{
             return res.status(400).json({ error: "Post does not exist error" });
         });
+        
 });
 
 module.exports = router;
