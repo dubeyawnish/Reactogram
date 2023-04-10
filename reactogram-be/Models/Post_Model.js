@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+const {ObjectId}=mongoose.Schema.Types;
 
 const postSchema= new mongoose.Schema({
     description:{
@@ -12,6 +13,10 @@ const postSchema= new mongoose.Schema({
     image:{
         type:String,
         required:true
+    },
+    author:{
+        type:ObjectId,
+        ref:'UserModel'
     }
 });
 

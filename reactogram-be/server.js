@@ -23,7 +23,9 @@ require('./Models/Post_Model.js');
 app.use(cors());
 app.use(express.json());
 
+app.use(require('./Route/File_Route'));
 app.use(require('./Route/User_Route'));
+app.use(require('./Route/Post_Route'));
 
 
 const PORT=4000;
