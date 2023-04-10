@@ -16,7 +16,8 @@ mongoose.connection.on('error',(error)=>{
 
 */
 
-require('./Models/User_Model')
+require('./Models/User_Model');
+require('./Models/Post_Model.js');
 
 
 app.use(cors());
