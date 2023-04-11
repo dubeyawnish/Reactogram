@@ -1,10 +1,22 @@
 import React from 'react'
 import './Navbar.css'
 import logo from '../../Images/logo.PNG'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 //import '../Card/Card.css'
 
 const Navbar = () => {
+    const navigate=useNavigate();
+    const dispatch=useDispatch();
+   
+    const logout=()=>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        dispatch({type:"LOGIN_ERROR"});
+        navigate('/login');
+    }
+
+
     return (
         <div>
             <nav className="navbar bg-light shadow-sm">
@@ -25,7 +37,7 @@ const Navbar = () => {
                             <ul className="dropdown-menu">
                                 <li><NavLink className="nav-link  ms-3" to='/myprofile'>My Profile</NavLink> </li>
                                 
-                                <li><a className="dropdown-item" href="#">Log Out</a></li>
+                                <li><a onClick={()=>{logout()}} className="dropdown-item" href="#">Log Out</a></li>
 
                             </ul>
                         </div>

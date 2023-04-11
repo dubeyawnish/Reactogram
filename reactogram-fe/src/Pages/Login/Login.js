@@ -32,7 +32,7 @@ const Login = () => {
                          localStorage.setItem("token",result.data.result.token);
                          localStorage.setItem('user',JSON.stringify(result.data.result.user));
                          dispatch({type:"LOGIN_SUCCESS",payload:result.data.result.user});
-                         navigate('/posts')
+                         navigate('/myprofile')
                     }
                     setEmail("");
 
