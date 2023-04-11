@@ -50,11 +50,12 @@ router.post("/login", (req, res) => {
             if (!userInDB) {
                 return res.status(401).json({ error: "Invalid Credentials" });
             }
+            //console.log(userInDB);
             bcryptjs.compare(password, userInDB.password)// compare the password user enter and password form database
                 .then((didMatch) => {
                     if(didMatch){
                         const jwttoken=jwt.sign({_id:userInDB._id},JWT_SECRET);
-                        const userinfo={"email":userInDB.email,"fullName":userInDB.fullName};
+                        const userinfo={"email":userInDB.email,"fullName":userInDB.fullName,"_id":userInDB._id};
                         res.status(201).json({ result: {token:jwttoken,user:userinfo} });
                     }
                     else{
