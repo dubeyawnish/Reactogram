@@ -3,6 +3,8 @@ const cors = require('cors');
 //const mongoose = require('mongoose');
 const Connection =require('./Database/db.js');
 //const { MONGODB_URL } = require('./config')
+
+global.__basedir=__dirname;
 const app=express();
 /*
 mongoose.connect(MONGODB_URL);

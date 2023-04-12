@@ -43,8 +43,8 @@ router.post("/uploadfile", upload.single('file'), function (req, res) {
 
 
 const downloadFile = (req, res) => {
-    const fileName = req.params.filename;
-    const path = __basedir + "/uploads";
+    const fileName = req.params.filename;  //file name which i will download
+    const path = __basedir + "/uploads/";  // form where i have to download the file
     res.download(path + fileName, (error) => {
         if (error) {
             res.status(500).send({ message: "File cannot be downlaoded" });
@@ -55,7 +55,7 @@ const downloadFile = (req, res) => {
 
 
 //download file api
-router.get("files/:filename", downloadFile);
+router.get("/files/:filename", downloadFile);
 
 
 

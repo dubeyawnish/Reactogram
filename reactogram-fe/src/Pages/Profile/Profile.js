@@ -4,12 +4,17 @@ import { Button, Modal } from 'react-bootstrap'
 import { API_BASE_URL } from '../../config';
 import axios from 'axios'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+
 const Profile = () => {
+  const navigate=useNavigate();
 
 
   const [image, setImage] = useState({ preview: '', data: '' });
 
   const [show, setShow] = useState(false);
+
+  const [loader,setLoader]=useState(false);
 
   const [caption, setCaption] = useState('');
   const [location, setLocation] = useState('');
@@ -68,17 +73,31 @@ const Profile = () => {
     }
 
     else {
+      setLoader(true);
       const imgRes = await handleImgUpload();
       // add validation rule for caption and loacation
-      const request = { description: caption, location: location, image: `${API_BASE_URL}/${imgRes.data.fileName}` }
+      const request = { description: caption, location: location, image: `${API_BASE_URL}/files/${imgRes.data.fileName}` }
       // write api call to create post
+      const postResponse= await axios.post(`${API_BASE_URL}/createpost`,request,CONFIG_OBJ);
+      setLoader(false);
+      if(postResponse.status===201){
+        Swal.fire({
+          icon: 'success',
+          title: 'Post created Successfully'
+        })
+        navigate('/posts')
+      }
+      else{
+        Swal.fire({
+          icon:'error',
+          title:'Some error occured while creating post'
+        })
+      }
+
     }
 
 
-    const imgRes = await handleImgUpload();
-    // add validation rule for caption and loacation
-    const request = { description: caption, location: location, image: `${API_BASE_URL}/${imgRes.data.fileName}` }
-    // write api call to create post
+   
   }
 
 
