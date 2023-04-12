@@ -1,8 +1,13 @@
 import React from 'react'
 import './Card.css'
+import {useSelector} from 'react-redux';
 
 
 const Card = (props) => {
+
+   const user=useSelector(state=>state.userReducer);
+
+
     return (
         <div >
             <div className="card shadow  "style={{width:'23rem',height:'26rem'}} >
@@ -15,14 +20,14 @@ const Card = (props) => {
                                 <p className='location'>{props.postData.description}</p>
                             </div>
                         </div>
-                        
+                       { props.postData.author._id===user.user._id?
                         <div className='col-6 '>
-                            <span className='float-end'><i className=" fs-3 mt-3 fa-solid fa-ellipsis-vertical"></i></span>
-                        </div>
+                            <span style={{cursor:'pointer'}} onClick={()=>props.deletePost(props.postData._id)} className='float-end'><i className=" fs-3 mt-3 fa-solid fa-ellipsis-vertical"></i></span>
+                        </div>:""}
                     </div>
                    <div className='row'>
                       <div className='col-12'>
-                        <img style={{borderRadius:"15px"}} className='img-fluid' src={props.postData.image} alt=" post pic"/>
+                        <img style={{borderRadius:"15px"}} className='img-fluid post-img' src={props.postData.image} alt=" post pic"/>
 
                       </div>
                    </div>

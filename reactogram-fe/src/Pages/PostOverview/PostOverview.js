@@ -28,7 +28,21 @@ const PostOverview = () => {
 
     useEffect(() => {
         getAllPost();
-    }, [])
+    }, []);
+
+    const CONFIG_OBJ = {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      }
+
+    const deletePost=async(postId)=>{
+        const response=await axios.delete(`${API_BASE_URL}/deletepost/${postId}`,CONFIG_OBJ);
+        if(response.status===200){
+            getAllPost();
+        }
+    }
 
 
 
@@ -40,7 +54,7 @@ const PostOverview = () => {
                     allPost.map((post) => {
                         return (
                             <div className='col-md-4 mb-2'>
-                                <Card postData={post} />
+                                <Card postData={post} deletePost={deletePost} />
                             </div>
                         )
                     })
