@@ -58,8 +58,8 @@ const Signup = () => {
 
                                    {loader ?
                                         <div className='mb-3 col-md-12 text-center'>
-                                             <div class="  spinner-border text-primary" role="status">
-                                                  <span class="visually-hidden"></span>
+                                             <div className="  spinner-border text-primary" role="status">
+                                                  <span className="visually-hidden"></span>
                                              </div>
                                         </div>
                                         : ""}

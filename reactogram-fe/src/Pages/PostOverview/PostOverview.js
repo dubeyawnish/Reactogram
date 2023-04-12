@@ -54,7 +54,7 @@ const PostOverview = () => {
                     allPost.map((post) => {
                         return (
                             <div className='col-md-4 mb-2'>
-                                <Card postData={post} deletePost={deletePost} />
+                                <Card postData={post} deletePost={deletePost}  getAllPost={getAllPost} />
                             </div>
                         )
                     })

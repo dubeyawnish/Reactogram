@@ -138,6 +138,10 @@ const Profile = () => {
     if(response.status===200){
       getMyallpost();
       setShow(false);
+      Swal.fire({
+        icon:'success',
+        title:'Post deleted successfully'
+      })
   }
   }
 
@@ -329,7 +333,7 @@ const Profile = () => {
                   <div className="dropZoneOverlay">
                     {image.preview && <img src={image.preview} width='150' height='150' />}
 
-                    <i class="fa-solid fa-cloud-arrow-up fs-1"></i><br />Upload Photo From Computer</div>
+                    <i className="fa-solid fa-cloud-arrow-up fs-1"></i><br />Upload Photo From Computer</div>
                 </div>
 
 
@@ -339,16 +343,16 @@ const Profile = () => {
             <div className='col-md-6 col-sm-12 d-flex flex-column justify-content-between'>
               <div className='row'>
                 <div className=' col-sm-12 mb-3'>
-                  <div class="form-floating">
-                    <textarea onChange={(e) => { setCaption(e.target.value) }} class="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
+                  <div className="form-floating">
+                    <textarea onChange={(e) => { setCaption(e.target.value) }} className="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
                     <label for="floatingTextarea">Add Caption</label>
                   </div>
 
                 </div>
                 <div className=' col-sm-12'>
-                  <div class="form-floating mb-3">
-                    <input onChange={(e) => { setLocation(e.target.value) }} type="text" class="form-control" id="floatingInput" placeholder="Add Location" />
-                    <label for="floatingInput"><i class="fa-solid fa-location-dot"></i> Add Location</label>
+                  <div className="form-floating mb-3">
+                    <input onChange={(e) => { setLocation(e.target.value) }} type="text" className="form-control" id="floatingInput" placeholder="Add Location" />
+                    <label for="floatingInput"><i className="fa-solid fa-location-dot"></i> Add Location</label>
                   </div>
 
                 </div>
@@ -358,8 +362,8 @@ const Profile = () => {
                 <div className='col-sm-12'>
                   {loader ?
                     <div className='mb-3 col-md-12 text-center'>
-                      <div class="  spinner-border text-primary" role="status">
-                        <span class="visually-hidden"></span>
+                      <div className="  spinner-border text-primary" role="status">
+                        <span className="visually-hidden"></span>
                       </div>
                     </div>
                     : ""}
