@@ -11,6 +11,7 @@ const router = express.Router();
 router.get('/allposts', (req, res) => {
     PostModel.find()
         .populate("author", "_id fullName profileImg")
+        .populate("comments.commentedBy","_id fullName")
         .then((dbPosts) => {
             res.status(200).json({ author: dbPosts })
         })
