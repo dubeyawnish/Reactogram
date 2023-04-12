@@ -32,8 +32,8 @@ const Navbar = () => {
                     </NavLink>
                     <form className="d-flex me-md-5" role="search ">
                         <input className=" searchbox form-control me-2 text-muted" type="search" placeholder="Search" />
-                        <a className="nav-link   searchIcon  allIcon fs-5 text-dark" href="#simple-list-item-1"><i className="fa-solid fa-magnifying-glass"></i></a>
-                        <a className="nav-link allIcon ms-5 me-5 fs-5 text-dark" href="#simple-list-item-1"><i className="fa-solid fa-house"></i></a>
+                        <NavLink className="nav-link   searchIcon  allIcon fs-5 text-dark" href="#simple-list-item-1"><i className="fa-solid fa-magnifying-glass"></i></NavLink>
+                        <NavLink className="nav-link allIcon ms-5 me-5 fs-5 text-dark" to="/posts"><i className="fa-solid fa-house"></i></NavLink>
                         {fullName!==undefined ?
 
                                  

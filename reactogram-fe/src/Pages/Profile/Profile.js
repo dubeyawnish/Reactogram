@@ -7,14 +7,14 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
 
   const [image, setImage] = useState({ preview: '', data: '' });
 
   const [show, setShow] = useState(false);
 
-  const [loader,setLoader]=useState(false);
+  const [loader, setLoader] = useState(false);
 
   const [caption, setCaption] = useState('');
   const [location, setLocation] = useState('');
@@ -78,26 +78,26 @@ const Profile = () => {
       // add validation rule for caption and loacation
       const request = { description: caption, location: location, image: `${API_BASE_URL}/files/${imgRes.data.fileName}` }
       // write api call to create post
-      const postResponse= await axios.post(`${API_BASE_URL}/createpost`,request,CONFIG_OBJ);
+      const postResponse = await axios.post(`${API_BASE_URL}/createpost`, request, CONFIG_OBJ);
       setLoader(false);
-      if(postResponse.status===201){
+      if (postResponse.status === 201) {
         Swal.fire({
           icon: 'success',
           title: 'Post created Successfully'
         })
         navigate('/posts')
       }
-      else{
+      else {
         Swal.fire({
-          icon:'error',
-          title:'Some error occured while creating post'
+          icon: 'error',
+          title: 'Some error occured while creating post'
         })
       }
 
     }
 
 
-   
+
   }
 
 
@@ -357,7 +357,14 @@ const Profile = () => {
 
               <div className='row'>
                 <div className='col-sm-12'>
-                  <button onClick={ ()=>{addPost()}}className=' custom-btn-pink px-4  custom-btn  float-end'>
+                  {loader ?
+                    <div className='mb-3 col-md-12 text-center'>
+                      <div class="  spinner-border text-primary" role="status">
+                        <span class="visually-hidden"></span>
+                      </div>
+                    </div>
+                    : ""}
+                  <button onClick={() => { addPost() }} className=' custom-btn-pink px-4  custom-btn  float-end'>
                     <span className='fs-6 fw-bold'>Post</span>
                   </button>
 
