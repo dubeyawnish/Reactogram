@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
 import './Profile.css'
 import { Button, Modal } from 'react-bootstrap'
-
+import { API_BASE_URL } from '../../config';
+import axios from 'axios'
+import Swal from 'sweetalert2';
 const Profile = () => {
 
 
+  const [image, setImage] = useState({ preview: '', data: '' });
+
   const [show, setShow] = useState(false);
+
+  const [caption, setCaption] = useState('');
+  const [location, setLocation] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -14,6 +21,69 @@ const Profile = () => {
 
   const handlePostClose = () => setShowPost(false);
   const handlePostShow = () => setShowPost(true);
+  const CONFIG_OBJ = {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("token")
+    }
+  }
+
+
+  const handleFileSelect = (event) => {
+    const img = {
+      preview: URL.createObjectURL(event.target.files[0]),
+      data: event.target.files[0]
+    }
+    setImage(img);
+  }
+
+  const handleImgUpload = async () => {
+    let formData = new FormData();
+    formData.append('file', image.data);
+    const response = axios.post(`${API_BASE_URL}/uploadFile`, formData);
+    return response;
+  }
+
+  const addPost = async () => {
+
+    if (image.preview === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Post image is mandatory'
+      })
+    }
+    else if (caption === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Post caption is mandatory'
+      })
+
+    }
+    else if (location === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Post location is mandatory'
+      })
+
+    }
+
+    else {
+      const imgRes = await handleImgUpload();
+      // add validation rule for caption and loacation
+      const request = { description: caption, location: location, image: `${API_BASE_URL}/${imgRes.data.fileName}` }
+      // write api call to create post
+    }
+
+
+    const imgRes = await handleImgUpload();
+    // add validation rule for caption and loacation
+    const request = { description: caption, location: location, image: `${API_BASE_URL}/${imgRes.data.fileName}` }
+    // write api call to create post
+  }
+
+
+
+
   return (
     <div className='container shadow mt-3 p-4'>
       <div className='row'>
@@ -237,8 +307,9 @@ const Profile = () => {
             <div className='col-md-6 col-sm-12 mb-3'>
               <div className='uploadBox'>
                 <div className="dropZoneContainer">
-                  <input name="file" type="file" id="drop_zone" className="FileUpload" accept=".jpg,.png,.gif" />
+                  <input name="file" type="file" id="drop_zone" className="FileUpload" accept=".jpg,.png,.gif" onChange={handleFileSelect} />
                   <div className="dropZoneOverlay">
+                    {image.preview && <img src={image.preview} width='150' height='150' />}
 
                     <i class="fa-solid fa-cloud-arrow-up fs-1"></i><br />Upload Photo From Computer</div>
                 </div>
@@ -251,14 +322,14 @@ const Profile = () => {
               <div className='row'>
                 <div className=' col-sm-12 mb-3'>
                   <div class="form-floating">
-                    <textarea class="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
+                    <textarea onChange={(e) => { setCaption(e.target.value) }} class="form-control" placeholder="Add Caption" id="floatingTextarea"></textarea>
                     <label for="floatingTextarea">Add Caption</label>
                   </div>
 
                 </div>
                 <div className=' col-sm-12'>
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Add Location" />
+                    <input onChange={(e) => { setLocation(e.target.value) }} type="text" class="form-control" id="floatingInput" placeholder="Add Location" />
                     <label for="floatingInput"><i class="fa-solid fa-location-dot"></i> Add Location</label>
                   </div>
 
@@ -267,7 +338,7 @@ const Profile = () => {
 
               <div className='row'>
                 <div className='col-sm-12'>
-                  <button className=' custom-btn-pink px-4  custom-btn  float-end'>
+                  <button onClick={ ()=>{addPost()}}className=' custom-btn-pink px-4  custom-btn  float-end'>
                     <span className='fs-6 fw-bold'>Post</span>
                   </button>
 
