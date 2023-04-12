@@ -132,6 +132,15 @@ const Profile = () => {
 
   }
 
+  const deletePost=async(postId)=>{
+
+    const response=await axios.delete(`${API_BASE_URL}/deletepost/${postId}`,CONFIG_OBJ);
+    if(response.status===200){
+      getMyallpost();
+      setShow(false);
+  }
+  }
+
 
 
   return (
@@ -216,7 +225,7 @@ const Profile = () => {
       <Modal show={show} onHide={handleClose} size='lg'>
         <Modal.Header closeButton>
           <div className="dropdown">
-            <a className="btn " href="#" role="button" data-bs-toggle="dropdown">
+            <a className="btn "   role="button" data-bs-toggle="dropdown">
               <i className=" fs-4 fa-solid fa-ellipsis"></i>
 
 
@@ -224,7 +233,7 @@ const Profile = () => {
 
             <ul className="dropdown-menu">
               <li><a className="dropdown-item" href="#"><i className=" px-2 fa-regular fa-pen-to-square"></i> Edit Post</a></li>
-              <li><a className="dropdown-item" href="#"><i className="px-2 fa-regular fa-trash-can"></i> Delete Post</a></li>
+              <li><a className="dropdown-item" onClick={()=>{deletePost(showDetail._id)}}><i className="px-2 fa-regular fa-trash-can"></i> Delete Post</a></li>
 
             </ul>
           </div>
