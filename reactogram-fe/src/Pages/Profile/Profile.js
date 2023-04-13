@@ -203,9 +203,9 @@ const Profile = () => {
           myallposts.map((post) => {
             return (
               <div className='col-md-4 col-sm-12 mb-md-0  mb-2'>
-                <div className="card "style={{width:'23rem',height:'15rem'}} >
+                <div className="card " >
                   <img onClick={()=>{showPostDetails(post);
-                  handleShow();}}  src={post.image} className=" card-img-top" alt="post" />
+                  handleShow();}}  src={post.image} className="img-fluid card-img-top" alt="post" />
 
                 </div>
               </div>
