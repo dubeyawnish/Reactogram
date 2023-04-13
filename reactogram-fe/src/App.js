@@ -22,6 +22,7 @@ function App() {
       const userData = JSON.parse(localStorage.getItem('user'));
       if (userData) {
         dispatch({ type: "LOGIN_SUCCESS", payload: userData });
+        navigate('/posts')
       }
       else {
         localStorage.removeItem("token");
