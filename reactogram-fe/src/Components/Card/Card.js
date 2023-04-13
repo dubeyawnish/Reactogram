@@ -25,12 +25,12 @@ const Card = (props) => {
         }
     }
 
-    const submitComment = async(postId) => {
+    const submitComment = async (postId) => {
         setCommentBox(false);
-        const request={"postId":postId,"commentText":comment};
-        const response=await axios.put(`${API_BASE_URL}/comment`,request,CONFIG_OBJ);
+        const request = { "postId": postId, "commentText": comment };
+        const response = await axios.put(`${API_BASE_URL}/comment`, request, CONFIG_OBJ);
         console.log(response);
-        if(response.status===200){
+        if (response.status === 200) {
             props.getAllPost();
         }
 
@@ -86,18 +86,18 @@ const Card = (props) => {
 
 
                     {
-                        
-                        props.postData.comments.map((comment)=>{
-                            return(
-                            <div className='row'>
-                            <div className='col-12'>
-                                {comment.commentText} - {comment.commentedBy.fullName}
-                                
+
+                        props.postData.comments.map((comment) => {
+                            return (
+                                <div className='row'>
+                                    <div className='col-12'>
+                                        {comment.commentText} - {comment.commentedBy.fullName}
+
+                                    </div>
                                 </div>
-                        </div>
                             )
                         })
-                        
+
                     }
 
 

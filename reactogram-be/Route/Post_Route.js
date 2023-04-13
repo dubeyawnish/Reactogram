@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/allposts', (req, res) => {
     PostModel.find()
         .populate("author", "_id fullName profileImg")
-        .populate("comments.commentedBy","_id fullName")
+        .populate("comments.commentedBy", "_id fullName")
         .then((dbPosts) => {
             res.status(200).json({ author: dbPosts })
         })
@@ -115,14 +115,14 @@ router.put('/unlike', protectedResoure, (req, res) => {
 
 
 router.put('/comment', protectedResoure, (req, res) => {
-     const comment={commentText:req.body.commentText,commentedBy:req.user._id};
+    const comment = { commentText: req.body.commentText, commentedBy: req.user._id };
 
     PostModel.findByIdAndUpdate(req.body.postId, {
-        $push: { comments: comment} // push the userid which user likes
+        $push: { comments: comment } // push the userid which user likes
     }, {
         new: true // returns the updated record
-    })   
-        .populate("comments.commentedBy" ,"_id fullName") //comment owner
+    })
+        .populate("comments.commentedBy", "_id fullName") //comment owner
         .populate("author", "_id fullName") //post owner
         .then((result) => {
             return res.status(200).json(result);
