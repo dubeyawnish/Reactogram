@@ -1,4 +1,4 @@
-# Reactogram (Same as Instagram using MERN stack)
+# Reactogram (Same as Instagram Using MERN Stack)
 
 ### Live Demo:
 https://reactograms.onrender.com/
