@@ -7,7 +7,7 @@ https://reactograms.onrender.com/
 ## Features of Reactogram
 
 - Reactogram app is an instagram clone application where users can **register**, **login** and
-  **create post** with images.
+  **create post** with images .
 - Other users can view, like, comment on different posts
 - User can **sign up**.
 - User can **login** with credentials.
